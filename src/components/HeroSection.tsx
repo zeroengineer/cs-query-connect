@@ -22,16 +22,16 @@ const HeroSection: React.FC = () => {
   };
 
   return (
-    <div className="relative min-h-[calc(100vh-6rem)] flex flex-col items-center justify-center px-6 py-16 overflow-hidden">
+    <div className="relative min-h-[calc(100vh-6rem)] flex flex-col items-center justify-center px-6 py-16 overflow-hidden gradient-texture">
       {/* Decorative elements */}
-      <div className="absolute top-0 left-0 w-full h-full bg-gradient-radial from-accent/30 via-transparent to-transparent opacity-50" />
+      <div className="absolute top-0 left-0 w-full h-full bg-gradient-radial from-accent/5 via-transparent to-transparent opacity-50" />
       <div className="absolute top-20 right-20 w-64 h-64 rounded-full bg-cs-purple-400/10 blur-3xl" />
       <div className="absolute bottom-10 left-10 w-72 h-72 rounded-full bg-cs-blue-400/10 blur-3xl" />
       
       {/* Main content */}
       <div className="relative z-10 max-w-4xl w-full text-center animate-fade-in">
         <div className="space-y-6 mb-16">
-          <h4 className="text-sm font-medium uppercase tracking-widest text-cs-indigo-600 mb-2 animate-slide-up stagger-item">
+          <h4 className="text-sm font-medium uppercase tracking-widest text-cs-indigo-400 mb-2 animate-slide-up stagger-item">
             Learning Made Intelligent
           </h4>
           <h1 className="text-5xl md:text-7xl font-bold leading-tight animate-slide-up stagger-item">

@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -110,14 +109,14 @@ export default {
 				sm: 'calc(var(--radius) - 4px)'
 			},
 			fontFamily: {
-				sans: ['SF Pro Display', 'Inter', 'system-ui', 'sans-serif'],
+				sans: ['Poppins', 'system-ui', 'sans-serif'],
 				mono: ['SF Mono', 'monospace'],
 			},
 			boxShadow: {
 				'glow': '0 0 20px rgba(138, 75, 255, 0.2)',
-				'glass': '0 8px 32px 0 rgba(31, 38, 135, 0.07)',
-				'button': '0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
-				'card': '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+				'glass': '0 8px 32px 0 rgba(0, 0, 0, 0.2)',
+				'button': '0 10px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.1)',
+				'card': '0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.1)',
 			},
 			keyframes: {
 				'accordion-down': {

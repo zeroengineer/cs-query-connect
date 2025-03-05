@@ -1,7 +1,6 @@
 
 import React, { useEffect } from 'react';
 import HeroSection from '@/components/HeroSection';
-import AnimatedBackground from '@/components/AnimatedBackground';
 import Footer from '@/components/Footer';
 
 const Index: React.FC = () => {
@@ -29,7 +28,7 @@ const Index: React.FC = () => {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col bg-background">
+    <div className="min-h-screen flex flex-col bg-background gradient-texture">
       {/* Header */}
       <header className="fixed top-0 left-0 right-0 z-50 py-4 px-6 bg-background/80 backdrop-blur-md border-b border-border">
         <div className="container mx-auto flex justify-between items-center">
@@ -69,14 +68,11 @@ const Index: React.FC = () => {
       </header>
       
       <main className="flex-grow pt-16">
-        {/* Animated background */}
-        <AnimatedBackground />
-        
         {/* Hero section */}
         <HeroSection />
         
         {/* Features section */}
-        <section className="py-20 px-6">
+        <section className="py-20 px-6 gradient-texture">
           <div className="container mx-auto max-w-6xl">
             <div className="text-center mb-16 animate-on-scroll">
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
@@ -145,8 +141,8 @@ const Index: React.FC = () => {
         </section>
         
         {/* CTA section */}
-        <section className="py-20 px-6 relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-cs-blue-50 to-cs-purple-50 opacity-70"></div>
+        <section className="py-20 px-6 relative overflow-hidden gradient-texture">
+          <div className="absolute inset-0 bg-gradient-to-br from-cs-blue-900/20 to-cs-purple-900/20 opacity-70"></div>
           <div className="container relative z-10 mx-auto max-w-4xl text-center animate-on-scroll">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
               Ready to Enhance Your Learning?
