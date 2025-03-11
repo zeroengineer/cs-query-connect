@@ -1,23 +1,36 @@
 
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import { BookOpen, ChevronRight } from 'lucide-react';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import ThemeToggle from '@/components/ThemeToggle';
 import { getSubjectsBySemester } from '@/lib/mockData';
+import { Subject } from '@/lib/types';
 
-const QuestionPapers: React.FC = () => {
+const SemesterSubjects: React.FC = () => {
   const navigate = useNavigate();
+  const { semesterId } = useParams<{ semesterId: string }>();
+  const [subjects, setSubjects] = useState<Subject[]>([]);
   
-  const handleSemesterClick = (semester: number) => {
-    // For now, just store the selected semester in session storage
-    sessionStorage.setItem('selectedSemester', semester.toString());
-    navigate(`/semester/${semester}`);
+  useEffect(() => {
+    if (semesterId) {
+      const semesterNumber = parseInt(semesterId);
+      const semesterSubjects = getSubjectsBySemester(semesterNumber);
+      setSubjects(semesterSubjects);
+    }
+  }, [semesterId]);
+  
+  const handleSubjectClick = (subjectId: string) => {
+    navigate(`/question-papers/${subjectId}`);
   };
-
-  // Array of all semesters 1-8
-  const semesters = Array.from({ length: 8 }, (_, i) => i + 1);
-
+  
+  if (!semesterId) {
+    navigate('/question-papers');
+    return null;
+  }
+  
+  const semesterNumber = parseInt(semesterId);
+  
   return (
     <div className="min-h-screen flex flex-col bg-background gradient-texture">
       {/* Header */}
@@ -68,58 +81,40 @@ const QuestionPapers: React.FC = () => {
       <main className="flex-grow container mx-auto px-4 py-8">
         <Breadcrumbs 
           items={[
-            { label: 'Question Papers' }
+            { label: 'Question Papers', href: '/question-papers' },
+            { label: `Semester ${semesterNumber}` }
           ]}
         />
         
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-cs-blue-400">
-              Previous Question Papers
+            <h1 className="text-4xl font-bold mb-4 text-cs-blue-400">
+              Semester {semesterNumber} Subjects
             </h1>
-            <p className="text-xl text-muted-foreground">
-              Access previous years' question papers to enhance your preparation
+            <p className="text-lg text-muted-foreground">
+              Select a subject to view its question papers
             </p>
           </div>
           
-          {/* Semester Grid - Top Row (1-4) */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
-            {semesters.slice(0, 4).map(semester => {
-              const subjectCount = getSubjectsBySemester(semester).length;
-              return (
-                <div 
-                  key={semester}
-                  onClick={() => handleSemesterClick(semester)}
-                  className="bg-background/20 dark:bg-background/40 backdrop-blur-sm border border-border rounded-xl p-8 flex flex-col items-center cursor-pointer transition-all hover:bg-primary/5 hover:border-primary/30 hover:shadow-md"
-                >
-                  <div className="bg-cs-blue-500/20 rounded-full p-5 mb-4">
-                    <BookOpen className="h-8 w-8 text-cs-blue-400" />
+          <div className="space-y-4">
+            {subjects.map(subject => (
+              <div 
+                key={subject.id}
+                onClick={() => handleSubjectClick(subject.id)}
+                className="bg-background/20 dark:bg-background/40 backdrop-blur-sm border border-border rounded-xl p-6 flex items-center justify-between cursor-pointer transition-all hover:bg-primary/5 hover:border-primary/30"
+              >
+                <div className="flex items-center">
+                  <div className="bg-cs-blue-500/20 rounded-full p-3 mr-4">
+                    <BookOpen className="h-6 w-6 text-cs-blue-400" />
                   </div>
-                  <h2 className="text-2xl font-semibold mb-2">Semester {semester}</h2>
-                  <p className="text-muted-foreground text-sm">{subjectCount} subjects</p>
-                </div>
-              );
-            })}
-          </div>
-          
-          {/* Semester Grid - Bottom Row (5-8) */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {semesters.slice(4, 8).map(semester => {
-              const subjectCount = getSubjectsBySemester(semester).length;
-              return (
-                <div 
-                  key={semester}
-                  onClick={() => handleSemesterClick(semester)}
-                  className="bg-background/20 dark:bg-background/40 backdrop-blur-sm border border-border rounded-xl p-8 flex flex-col items-center cursor-pointer transition-all hover:bg-primary/5 hover:border-primary/30 hover:shadow-md"
-                >
-                  <div className="bg-cs-blue-500/20 rounded-full p-5 mb-4">
-                    <BookOpen className="h-8 w-8 text-cs-blue-400" />
+                  <div>
+                    <h2 className="text-xl font-semibold">{subject.name}</h2>
+                    <p className="text-muted-foreground text-sm">{subject.code}</p>
                   </div>
-                  <h2 className="text-2xl font-semibold mb-2">Semester {semester}</h2>
-                  <p className="text-muted-foreground text-sm">{subjectCount} subjects</p>
                 </div>
-              );
-            })}
+                <ChevronRight className="h-5 w-5 text-muted-foreground" />
+              </div>
+            ))}
           </div>
         </div>
       </main>
@@ -151,4 +146,4 @@ const QuestionPapers: React.FC = () => {
   );
 };
 
-export default QuestionPapers;
+export default SemesterSubjects;
