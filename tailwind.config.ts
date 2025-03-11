@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -173,6 +174,8 @@ export default {
 				'hero-gradient': 'linear-gradient(to right, rgba(99, 102, 241, 0.1), rgba(168, 85, 247, 0.1))',
 				'button-gradient': 'linear-gradient(to right, #4f46e5, #7e22ce)',
 				'button-gradient-hover': 'linear-gradient(to right, #4338ca, #6b21a8)',
+				'gradient-texture': 'radial-gradient(circle at 25% 25%, rgba(79, 70, 229, 0.15) 0%, transparent 50%), radial-gradient(circle at 75% 75%, rgba(126, 34, 206, 0.15) 0%, transparent 50%), radial-gradient(circle at 50% 50%, rgba(49, 46, 129, 0.05) 0%, transparent 100%)',
+				'gradient-texture-light': 'radial-gradient(circle at 25% 25%, rgba(79, 70, 229, 0.08) 0%, transparent 50%), radial-gradient(circle at 75% 75%, rgba(126, 34, 206, 0.08) 0%, transparent 50%), radial-gradient(circle at 50% 50%, rgba(236, 233, 255, 0.3) 0%, transparent 100%)',
 			},
 			backdropBlur: {
 				'xs': '2px',
