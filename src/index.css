@@ -109,7 +109,7 @@
   }
 
   .gradient-texture {
-    @apply dark:bg-gradient-texture light:bg-gradient-texture-light;
+    @apply bg-gradient-texture-light dark:bg-gradient-texture;
   }
   
   .animate-on-scroll {
