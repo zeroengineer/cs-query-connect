@@ -3,14 +3,13 @@ import React from 'react';
 import { BookOpen, MessageSquare } from 'lucide-react';
 import NavButton from './NavButton';
 import { toast } from '@/components/ui/use-toast';
+import { useNavigate } from 'react-router-dom';
 
 const HeroSection: React.FC = () => {
+  const navigate = useNavigate();
+
   const handlePYQClick = () => {
-    toast({
-      title: "Feature Coming Soon",
-      description: "The Previous Year Questions feature will be available shortly.",
-      duration: 3000,
-    });
+    navigate('/question-papers');
   };
 
   const handleAIClick = () => {
