@@ -11,6 +11,8 @@ import QuestionPapers from "./pages/QuestionPapers";
 import QuestionPaperArchive from "./pages/QuestionPaperArchive";
 import SemesterSubjects from "./pages/SemesterSubjects";
 import About from "./pages/About";
+import SignIn from "./pages/SignIn";
+import SignUp from "./pages/SignUp";
 import FloatingChatButton from "./components/FloatingChatButton";
 
 const queryClient = new QueryClient();
@@ -25,6 +27,8 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/about" element={<About />} />
+            <Route path="/sign-in" element={<SignIn />} />
+            <Route path="/sign-up" element={<SignUp />} />
             <Route path="/question-papers" element={<QuestionPapers />} />
             <Route path="/semester/:semesterId" element={<SemesterSubjects />} />
             <Route path="/question-papers/:subjectId" element={<QuestionPaperArchive />} />

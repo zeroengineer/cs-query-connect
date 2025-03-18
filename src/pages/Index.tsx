@@ -1,11 +1,30 @@
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import HeroSection from '@/components/HeroSection';
 import Footer from '@/components/Footer';
 import ThemeToggle from '@/components/ThemeToggle';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { LogOut } from 'lucide-react';
+import { useToast } from '@/hooks/use-toast';
 
 const Index: React.FC = () => {
+  const [user, setUser] = useState<{ name?: string; email: string } | null>(null);
+  const navigate = useNavigate();
+  const { toast } = useToast();
+
+  useEffect(() => {
+    // Check for user in localStorage or sessionStorage
+    const storedUser = localStorage.getItem('user') || sessionStorage.getItem('user');
+    
+    if (storedUser) {
+      try {
+        setUser(JSON.parse(storedUser));
+      } catch (error) {
+        console.error('Failed to parse user data:', error);
+      }
+    }
+  }, []);
+
   useEffect(() => {
     // Intersection Observer for scroll animations
     const animatedElements = document.querySelectorAll('.animate-on-scroll');
@@ -29,6 +48,17 @@ const Index: React.FC = () => {
     };
   }, []);
 
+  const handleSignOut = () => {
+    localStorage.removeItem('user');
+    sessionStorage.removeItem('user');
+    setUser(null);
+    
+    toast({
+      title: "Signed out",
+      description: "You have been successfully signed out.",
+    });
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-background gradient-texture">
       {/* Header */}
@@ -44,18 +74,33 @@ const Index: React.FC = () => {
             <Link to="/about" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
               About
             </Link>
-            <a href="#" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+            <Link to="/question-papers" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
               Resources
-            </a>
+            </Link>
             <a href="#" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
               Contact
             </a>
-            <a 
-              href="#" 
-              className="text-sm font-medium px-4 py-2 rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
-            >
-              Sign In
-            </a>
+            {user ? (
+              <div className="flex items-center space-x-4">
+                <span className="text-sm font-medium text-foreground">
+                  Hi, {user.name || user.email.split('@')[0]}
+                </span>
+                <button 
+                  onClick={handleSignOut}
+                  className="flex items-center space-x-1 text-sm font-medium px-4 py-2 rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
+                >
+                  <LogOut className="h-4 w-4" />
+                  <span>Sign Out</span>
+                </button>
+              </div>
+            ) : (
+              <Link 
+                to="/sign-in" 
+                className="text-sm font-medium px-4 py-2 rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
+              >
+                Sign In
+              </Link>
+            )}
             <ThemeToggle />
           </nav>
           
@@ -156,9 +201,15 @@ const Index: React.FC = () => {
             <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
               Join our platform today and experience the future of computer science education.
             </p>
-            <button className="hero-button bg-gradient-to-r from-cs-blue-600 to-cs-purple-600 hover:from-cs-blue-700 hover:to-cs-purple-700">
-              Get Started
-            </button>
+            {user ? (
+              <Link to="/question-papers" className="hero-button bg-gradient-to-r from-cs-blue-600 to-cs-purple-600 hover:from-cs-blue-700 hover:to-cs-purple-700">
+                Explore Resources
+              </Link>
+            ) : (
+              <Link to="/sign-up" className="hero-button bg-gradient-to-r from-cs-blue-600 to-cs-purple-600 hover:from-cs-blue-700 hover:to-cs-purple-700">
+                Get Started
+              </Link>
+            )}
           </div>
         </section>
       </main>
