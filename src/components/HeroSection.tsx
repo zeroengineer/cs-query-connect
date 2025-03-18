@@ -1,23 +1,20 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { BookOpen, MessageSquare } from 'lucide-react';
 import NavButton from './NavButton';
-import { toast } from '@/components/ui/use-toast';
 import { useNavigate } from 'react-router-dom';
+import Chatbot from './Chatbot';
 
 const HeroSection: React.FC = () => {
   const navigate = useNavigate();
+  const [isChatOpen, setIsChatOpen] = useState(false);
 
   const handlePYQClick = () => {
     navigate('/question-papers');
   };
 
   const handleAIClick = () => {
-    toast({
-      title: "Feature Coming Soon",
-      description: "AI Assistance will be available in the next update.",
-      duration: 3000,
-    });
+    setIsChatOpen(true);
   };
 
   return (
@@ -63,6 +60,8 @@ const HeroSection: React.FC = () => {
           </p>
         </div>
       </div>
+      
+      <Chatbot isOpen={isChatOpen} onClose={() => setIsChatOpen(false)} />
     </div>
   );
 };

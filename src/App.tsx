@@ -10,6 +10,7 @@ import NotFound from "./pages/NotFound";
 import QuestionPapers from "./pages/QuestionPapers";
 import QuestionPaperArchive from "./pages/QuestionPaperArchive";
 import SemesterSubjects from "./pages/SemesterSubjects";
+import FloatingChatButton from "./components/FloatingChatButton";
 
 const queryClient = new QueryClient();
 
@@ -28,6 +29,7 @@ const App = () => (
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
+          <FloatingChatButton />
         </BrowserRouter>
       </TooltipProvider>
     </ThemeProvider>
