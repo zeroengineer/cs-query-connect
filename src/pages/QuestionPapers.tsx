@@ -33,17 +33,17 @@ const QuestionPapers: React.FC = () => {
             <a href="/" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
               Home
             </a>
-            <a href="#" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+            <a href="/about" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
               About
             </a>
             <a href="/question-papers" className="text-sm font-medium text-primary hover:text-primary/90 transition-colors">
-              Resources
+              Question Papers
             </a>
             <a href="#" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
               Contact
             </a>
             <a 
-              href="#" 
+              href="/sign-in" 
               className="text-sm font-medium px-4 py-2 rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
             >
               Sign In

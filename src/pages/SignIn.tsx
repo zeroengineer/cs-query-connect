@@ -1,10 +1,10 @@
 
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Eye, EyeOff, LogIn, UserPlus } from 'lucide-react';
+import { Eye, EyeOff, LogIn, UserPlus, Home } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -18,7 +18,6 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
-import { Link } from 'react-router-dom';
 
 // Form schema for validation
 const formSchema = z.object({
@@ -119,6 +118,14 @@ const SignIn = () => {
   return (
     <div className="min-h-screen flex items-center justify-center gradient-texture p-4">
       <div className="glass-card w-full max-w-md p-8 rounded-2xl shadow-lg">
+        <div className="absolute top-4 left-4">
+          <Link to="/">
+            <Button variant="ghost" size="icon" className="rounded-full bg-background/50 hover:bg-background/80">
+              <Home className="h-5 w-5" />
+            </Button>
+          </Link>
+        </div>
+        
         <div className="mb-6 text-center">
           <h1 className="text-2xl font-bold mb-1">Welcome Back</h1>
           <p className="text-muted-foreground">Sign in to continue your learning journey</p>
