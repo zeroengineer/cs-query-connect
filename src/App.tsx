@@ -10,6 +10,7 @@ import NotFound from "./pages/NotFound";
 import QuestionPapers from "./pages/QuestionPapers";
 import QuestionPaperArchive from "./pages/QuestionPaperArchive";
 import SemesterSubjects from "./pages/SemesterSubjects";
+import About from "./pages/About";
 import FloatingChatButton from "./components/FloatingChatButton";
 
 const queryClient = new QueryClient();
@@ -23,6 +24,7 @@ const App = () => (
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
+            <Route path="/about" element={<About />} />
             <Route path="/question-papers" element={<QuestionPapers />} />
             <Route path="/semester/:semesterId" element={<SemesterSubjects />} />
             <Route path="/question-papers/:subjectId" element={<QuestionPaperArchive />} />

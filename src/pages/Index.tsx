@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import HeroSection from '@/components/HeroSection';
 import Footer from '@/components/Footer';
 import ThemeToggle from '@/components/ThemeToggle';
+import { Link } from 'react-router-dom';
 
 const Index: React.FC = () => {
   useEffect(() => {
@@ -33,16 +34,16 @@ const Index: React.FC = () => {
       {/* Header */}
       <header className="fixed top-0 left-0 right-0 z-50 py-4 px-6 bg-background/80 backdrop-blur-md border-b border-border">
         <div className="container mx-auto flex justify-between items-center">
-          <a href="/" className="flex items-center">
+          <Link to="/" className="flex items-center">
             <span className="font-bold text-xl">
               CS<span className="text-cs-blue-600">Query</span>Connect
             </span>
-          </a>
+          </Link>
           
           <nav className="hidden md:flex items-center space-x-8">
-            <a href="#" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+            <Link to="/about" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
               About
-            </a>
+            </Link>
             <a href="#" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
               Resources
             </a>
